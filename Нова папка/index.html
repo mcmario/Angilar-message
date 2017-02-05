@@ -1,0 +1,78 @@
+<!--список юзерів, імя , вік, прізвище, тип достопу(юзер , адмін) через модальні вікна-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="style/style.css">
+     <script src="js/angular.min.js"></script>  
+
+<!--
+      <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/jquery-ui-1.12.1/jquery-ui.js"></script>
+-->
+
+
+   
+
+</head>
+<body ng-app="myApp" ng-controller="myCtrl as my" >
+ <div class="container">
+   <label >Search
+        <input type="text" placeholder="search" ng-model="my.search">
+        </label>
+         <label >From:
+        <input type="text" placeholder="from" ng-model="my.fromPrice">
+        </label>
+         <label >TO:
+        <input type="text" placeholder="to" ng-model="my.toPrice">
+        </label>
+   
+   
+    <table class="table table-bordered " >
+        <tr>
+             <th ng-click="sort='name'">Name</th>
+             <th ng-click="sort='sname'">SName</th>
+             <th ng-click="sort='phone'">Phone</th>
+              <th ng-click="sort='age'">Age</th>
+        </tr>
+        <tr ng-repeat="human in my.people | orderBy:sort  | filter:my.filterAge">
+            <td >{{human.name}}</td>
+             <td >{{human.sname}}</td>
+             <td >{{human.phone}}</td>
+              <td >{{human.age}}</td>
+             <td><input type="button" value="remove" ng-click="my.remove(human)"></td>
+        </tr>
+        
+    </table>
+    
+   
+    <form action="">
+        <label >Name:
+        <input type="text" placeholder="Name" ng-model="my.newUser.name">
+        </label>
+        <label >Sname:
+        <input type="text" placeholder="SName" ng-model="my.newUser.sname">
+        </label>
+        <label >Phone:
+        <input type="text" placeholder="Phone" ng-model="my.newUser.phone">
+        </label>
+         <label >Age:
+        <input type="text" placeholder="age" ng-model="my.newUser.age">
+        </label>
+        <input type="button" value="Add" ng-click="my.add()">
+    </form>
+  </div>
+      
+   
+   
+   
+    <script src="js/main.js"></script>
+    
+</body>
+</html>

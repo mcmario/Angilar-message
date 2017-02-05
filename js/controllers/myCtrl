@@ -1,0 +1,69 @@
+
+app.controller('myCtrl', ['UserService',function(UserService){
+    var vm=this;
+ vm.people;
+//    vm.people=[
+//        {
+//            name:"Vasya",
+//            sname:"Vasyliy",
+//            phone:"+380978901915",
+//            age:"35"
+//        },
+//          {
+//            name:"Nastia",
+//            sname:"Ivanova",
+//            phone:"+38097565545",
+//              age:"26"
+//        },
+//          {
+//            name:"Ivan",
+//            sname:"Gorec",
+//            phone:"+380660674125",
+//               age:"16"
+//        },
+//        {
+//            name:"AAAAAAaaaaaaaaa",
+//            sname:"BBBBBBBBb",
+//            phone:"+3803663125",
+//               age:"12"
+//        }
+//    ]
+  
+    
+        vm.add=function(){
+        UserService.addUser(vm.newUser);
+            vm.newUser={};
+             vm.getUsers();
+        }
+        vm.remove=function(human){
+          UserService.deleteUser(human.phone);
+            vm.getUsers();
+        }
+        vm.getUsers=function(){
+            vm.people=UserService.getUsers();
+        }
+        vm.init=function(){
+            vm.getUsers();
+        }
+        
+        vm.init();
+        
+        vm.filterAge=function(user){
+            var from;
+            var to;
+            if(!vm.fromPrice)
+                from=0;
+            else from=vm.fromPrice
+            
+             if(!vm.toPrice)
+                to=999999999999;
+           else
+               to=vm.toPrice
+        
+           if(user.age>=from && user.age<=to)
+            return true
+            return false
+        }
+    
+    
+}])
